@@ -1,9 +1,11 @@
 package com.german.german_word_api.controller;
 
+import com.german.german_word_api.dto.WordDto;
 import com.german.german_word_api.model.Word;
 import com.german.german_word_api.service.WordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -15,13 +17,13 @@ public class WordController {
     private final WordService wordService;
 
     @GetMapping
-    public List<Word> getAll(){
+    public List<WordDto> getAll(){
         return wordService.getAllWords();
     }
 
     @PostMapping
-    public Word add(@RequestBody Word word){
-        return wordService.saveWord(word);
+    public WordDto add(@Valid @RequestBody WordDto dto){
+        return wordService.saveWord(dto);
     }
 
 }
